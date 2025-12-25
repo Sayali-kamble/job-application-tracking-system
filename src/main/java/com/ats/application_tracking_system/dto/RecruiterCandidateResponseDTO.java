@@ -1,0 +1,11 @@
+package com.ats.application_tracking_system.dto;
+
+import com.ats.application_tracking_system.enums.HiringStage;
+
+public class RecruiterCandidateResponseDTO {
+    private Long id;
+    private String candidateName;
+    private String email;
+    private HiringStage currentStage;
+    private String remarks;
+}
