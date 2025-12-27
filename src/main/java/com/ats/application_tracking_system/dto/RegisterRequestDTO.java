@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Data
+//@Data
 public class RegisterRequestDTO {
 
     @NotBlank(message = "Name is required")
@@ -23,4 +23,9 @@ public class RegisterRequestDTO {
 
     @NotNull(message = "Role is required")
     private UserRole role;
+
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public String getPassword() { return password; }
+    public UserRole getRole() { return role; }
 }
