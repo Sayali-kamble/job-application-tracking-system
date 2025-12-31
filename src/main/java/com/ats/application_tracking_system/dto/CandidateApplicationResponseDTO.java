@@ -2,6 +2,7 @@ package com.ats.application_tracking_system.dto;
 
 import com.ats.application_tracking_system.enums.ApplicationPlatform;
 import com.ats.application_tracking_system.enums.ApplicationStatus;
+import jdk.jshell.Snippet;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -14,4 +15,6 @@ public class CandidateApplicationResponseDTO {
     private ApplicationPlatform platform;
     private ApplicationStatus status;
     private LocalDate appliedDate;
+
+
 }

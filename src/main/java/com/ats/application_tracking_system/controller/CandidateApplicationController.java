@@ -27,15 +27,6 @@ public class CandidateApplicationController {
     }
 
     // ================= CREATE =================
-    /*@PostMapping
-    public CandidateApplicationResponseDTO createApplication(
-            @Valid @RequestBody CandidateApplicationRequestDTO dto,
-            @AuthenticationPrincipal User user) {
-
-        return service.createApplication(dto, user);
-    }
-}*/
-
     @PostMapping
     public ResponseEntity<CandidateApplicationResponseDTO> createApplication(
             @Valid @RequestBody CandidateApplicationRequestDTO dto,
