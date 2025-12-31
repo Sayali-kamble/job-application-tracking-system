@@ -45,6 +45,10 @@ public class User {
     @Column(nullable = false)
     private UserRole role; // CANDIDATE / RECRUITER
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
