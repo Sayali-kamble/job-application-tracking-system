@@ -9,6 +9,7 @@ import com.ats.application_tracking_system.model.CandidateApplication;
 import com.ats.application_tracking_system.model.User;
 import com.ats.application_tracking_system.repository.CandidateApplicationRepository;
 import com.ats.application_tracking_system.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
@@ -31,9 +32,7 @@ public class CandidateApplicationService {
             String email) {
 
         //Fetch logged-in candidate
-        User candidate = userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found with email: " + email));
+        User candidate = getCandidateByEmail(email);
 
         log.info("Creating application for candidate: {}", email);
 
@@ -61,9 +60,7 @@ public class CandidateApplicationService {
             int page,
             int size) {
 
-        User candidate = userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found: " + email));
+        User candidate = getCandidateByEmail(email);
 
         log.info("Fetching applications for candidate: {}", email);
 
@@ -80,15 +77,14 @@ public class CandidateApplicationService {
 
 
     // ================= UPDATE =================
+    @Transactional
     public CandidateApplicationResponseDTO updateApplication(
             Long applicationId,
             CandidateApplicationRequestDTO dto,
             String email) {
 
         // Fetch candidate from DB
-        User candidate = userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found: " + email));
+        User candidate = getCandidateByEmail(email);
 
         // Fetch application
         CandidateApplication application = repository.findById(applicationId)
@@ -121,12 +117,12 @@ public class CandidateApplicationService {
 
 
     // ================= DELETE =================
+
+    @Transactional
     public void deleteApplication(Long applicationId, String email) {
 
         // Fetch candidate from DB
-        User candidate = userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found: " + email));
+        User candidate = getCandidateByEmail(email);
 
         // Fetch application
         CandidateApplication application = repository.findById(applicationId)
@@ -146,20 +142,6 @@ public class CandidateApplicationService {
         repository.delete(application);
     }
 
-    /*public void deleteApplication(Long applicationId, User candidate) {
-
-        CandidateApplication application = repository.findById(applicationId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Application not found"));
-
-        if (!application.getCandidate().getId().equals(candidate.getId())) {
-            log.warn("Unauthorized delete attempt by {}", candidate.getEmail());
-            throw new UnauthorizedAccessException("You cannot delete this application");
-        }
-
-        log.warn("Deleting application {} by {}", applicationId, candidate.getEmail());
-        repository.delete(application);
-    }*/
 
     // ================= FILTER BY STATUS=================
     public Page<CandidateApplicationResponseDTO> getByStatus(
@@ -169,9 +151,7 @@ public class CandidateApplicationService {
             int size) {
 
         // Fetch candidate
-        User candidate = userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found: " + email));
+        User candidate = getCandidateByEmail(email);
 
         log.info("Fetching {} applications for {}", status, email);
 
@@ -201,5 +181,11 @@ public class CandidateApplicationService {
         dto.setAppliedDate(application.getAppliedDate());
 
         return dto;
+    }
+
+    private User getCandidateByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found: " + email));
     }
 }
