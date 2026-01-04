@@ -6,8 +6,10 @@ import lombok.Data;
 @Data
 public class RecruiterCandidateResponseDTO {
     private Long id;
-    private String candidateName;
+    private String fullName;
     private String email;
-    private HiringStage currentStage;
-    private String remarks;
+    private String phone;
+    private CandidatePipelineStatus status;
+    private Long jobOpeningId;
+    private String resumePath;
 }
