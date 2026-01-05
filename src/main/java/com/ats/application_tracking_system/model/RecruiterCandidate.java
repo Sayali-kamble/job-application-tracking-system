@@ -45,6 +45,10 @@ public class RecruiterCandidate {
     @JoinColumn(name = "recruiter_id", nullable = false)
     private User recruiter;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private HiringStage currentStage;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -54,6 +58,7 @@ public class RecruiterCandidate {
         this.updatedAt = LocalDateTime.now();
         if (this.status == null) {
             this.status = CandidatePipelineStatus.APPLIED;
+            this.currentStage = HiringStage.RESUME_RECEIVED;
         }
     }
 
