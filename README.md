@@ -64,29 +64,29 @@ This project provides a **role-based Application Tracking System** where:
 
 ---
 
-## 📡 API Endpoints Overview
+## 📡 API Endpoints
 
-The system provides **role-based APIs** secured using JWT tokens:
-
-**Authentication**
+### Authentication
 - `POST /api/auth/register` – Register as Candidate or Recruiter  
 - `POST /api/auth/login` – Login and receive JWT token  
 
-**Candidate APIs**
+### Candidate APIs
 - `POST /api/candidate/applications` – Add a new job application  
 - `GET /api/candidate/applications` – View all applications  
 - `PATCH /api/candidate/applications/{id}/status` – Update application status  
 
-**Recruiter APIs**
+### Recruiter APIs
 - `POST /api/recruiter/jobs` – Create a new job opening  
 - `PATCH /api/recruiter/candidates/{id}/stage` – Move candidate through hiring stages  
 - `GET /api/recruiter/dashboard` – View open positions and candidates per job  
 
 ---
 
-🚀 Future Enhancements
-Email notifications for status changes
-Deployment on AWS
+## 🚀 Future Enhancements
+- Email notifications for status changes  
+- Deployment on AWS  
 
-👩‍💻 Author
-Sayali Kamble – Java Developer
+---
+
+## 👩‍💻 Author
+**Sayali Kamble** – Java Developer
