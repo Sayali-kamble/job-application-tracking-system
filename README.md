@@ -17,7 +17,7 @@ This project provides a **role-based Application Tracking System** where:
 
 ---
 
-## 🏗 Modules Implemented
+## Modules Implemented
 
 ### 1️⃣ Authentication & Authorization
 - User registration as **Candidate** or **Recruiter**  
@@ -79,6 +79,45 @@ This project provides a **role-based Application Tracking System** where:
 - `POST /api/recruiter/jobs` – Create a new job opening  
 - `PATCH /api/recruiter/candidates/{id}/stage` – Move candidate through hiring stages  
 - `GET /api/recruiter/dashboard` – View open positions and candidates per job  
+
+---
+
+## How to Run the Project
+
+### Prerequisites
+- Java 17 (or Java 11)  
+- Maven  
+- MySQL  
+- Postman (for API testing)  
+
+### Steps to Run
+1. **Clone the repository**  
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+Configure the database
+Update MySQL credentials in src/main/resources/application.properties:
+
+properties
+Copy code
+spring.datasource.url=jdbc:mysql://localhost:3306/job_tracker
+spring.datasource.username=root
+spring.datasource.password=your_password
+Run the application
+
+bash
+Copy code
+mvn spring-boot:run
+Access the application
+
+Server runs on: http://localhost:8080
+
+Test APIs using Postman
+
+Use JWT token in Authorization header for secured APIs:
+
+http
+Copy code
+Authorization: Bearer <your_jwt_token>
 
 ---
 
