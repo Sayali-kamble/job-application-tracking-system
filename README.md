@@ -17,7 +17,7 @@ This project provides a **role-based Application Tracking System** where:
 
 ---
 
-## Modules Implemented
+## 🏗 Modules Implemented
 
 ### 1️⃣ Authentication & Authorization
 - User registration as **Candidate** or **Recruiter**  
@@ -64,25 +64,33 @@ This project provides a **role-based Application Tracking System** where:
 
 ---
 
-## 📡 API Endpoints
+## 📡 API Endpoints Overview
 
-### Authentication
+The system provides **role-based APIs** secured using JWT tokens:
+
+**Authentication**
 - `POST /api/auth/register` – Register as Candidate or Recruiter  
 - `POST /api/auth/login` – Login and receive JWT token  
 
-### Candidate APIs
+**Candidate APIs**
 - `POST /api/candidate/applications` – Add a new job application  
 - `GET /api/candidate/applications` – View all applications  
 - `PATCH /api/candidate/applications/{id}/status` – Update application status  
 
-### Recruiter APIs
+**Recruiter APIs**
 - `POST /api/recruiter/jobs` – Create a new job opening  
 - `PATCH /api/recruiter/candidates/{id}/stage` – Move candidate through hiring stages  
 - `GET /api/recruiter/dashboard` – View open positions and candidates per job  
 
+**Note:** Use the JWT token in the **Authorization header** for secured APIs:  
+Authorization: Bearer <your_jwt_token>
+
+yaml
+Copy code
+
 ---
 
-## How to Run the Project
+## ▶️ How to Run the Project
 
 ### Prerequisites
 - Java 17 (or Java 11)  
@@ -111,21 +119,12 @@ Access the application
 
 Server runs on: http://localhost:8080
 
-Test APIs using Postman
+Test APIs using Postman with JWT token in Authorization header
 
-Use JWT token in Authorization header for secured APIs:
+🚀 Future Enhancements
+Email notifications for status changes
 
-http
-Copy code
-Authorization: Bearer <your_jwt_token>
+Deployment on AWS
 
----
-
-## 🚀 Future Enhancements
-- Email notifications for status changes  
-- Deployment on AWS  
-
----
-
-## 👩‍💻 Author
-**Sayali Kamble** – Java Developer
+👩‍💻 Author
+Sayali Kamble – Java Developer
