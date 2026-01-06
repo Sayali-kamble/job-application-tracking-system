@@ -3,6 +3,9 @@ package com.ats.application_tracking_system.controller;
 import com.ats.application_tracking_system.dto.RecruiterCandidateRequestDTO;
 import com.ats.application_tracking_system.dto.RecruiterCandidateResponseDTO;
 import com.ats.application_tracking_system.dto.RecruiterCandidateUpdateDTO;
+import com.ats.application_tracking_system.enums.HiringStage;
+import com.ats.application_tracking_system.model.RecruiterCandidate;
+import com.ats.application_tracking_system.repository.RecruiterCandidateRepository;
 import com.ats.application_tracking_system.service.RecruiterCandidateService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,16 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class RecruiterCandidateController {
 
     private final RecruiterCandidateService service;
-
-    /*@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<RecruiterCandidateResponseDTO> addCandidate(
-            @RequestPart("data") @Valid RecruiterCandidateRequestDTO dto,
-            @RequestPart(value = "resume", required = false) MultipartFile resume,
-            Authentication authentication) {
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(service.addCandidate(dto, resume, authentication.getName()));
-    }*/
+    private final RecruiterCandidateRepository candidateRepo;
 
     @PostMapping(
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
@@ -63,5 +57,17 @@ public class RecruiterCandidateController {
         return ResponseEntity.ok(
                 service.getCandidates(pageable, authentication.getName()));
     }
+
+    @GetMapping("/filter")
+    public Page<RecruiterCandidate> filterCandidates(
+            @RequestParam Long jobId,
+            @RequestParam HiringStage stage,
+            Pageable pageable,
+            Authentication auth) {
+
+        return candidateRepo.findByRecruiterEmailAndJobOpeningIdAndCurrentStage(
+                auth.getName(), jobId, stage, pageable);
+    }
+
 }
 
