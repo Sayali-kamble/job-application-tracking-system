@@ -82,41 +82,32 @@ The system provides **role-based APIs** secured using JWT tokens:
 - `PATCH /api/recruiter/candidates/{id}/stage` – Move candidate through hiring stages  
 - `GET /api/recruiter/dashboard` – View open positions and candidates per job  
 
-**Note:** Use the JWT token in the **Authorization header** for secured APIs:  
-Authorization: Bearer <your_jwt_token>
-
-yaml
-Copy code
-
 ---
 
-## ▶️ How to Run the Project
+## How to Run the Project
 
 ### Prerequisites
-- Java 17 (or Java 11)  
+- Java 17  
 - Maven  
 - MySQL  
-- Postman (for API testing)  
+- Postman
 
 ### Steps to Run
 1. **Clone the repository**  
-```bash
 git clone https://github.com/your-username/your-repo-name.git
+
 Configure the database
 Update MySQL credentials in src/main/resources/application.properties:
 
 properties
-Copy code
 spring.datasource.url=jdbc:mysql://localhost:3306/job_tracker
 spring.datasource.username=root
 spring.datasource.password=your_password
+
 Run the application
-
-bash
-Copy code
 mvn spring-boot:run
-Access the application
 
+Access the application
 Server runs on: http://localhost:8080
 
 Test APIs using Postman with JWT token in Authorization header
