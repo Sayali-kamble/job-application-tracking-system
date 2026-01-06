@@ -31,18 +31,18 @@ This project solves both problems by providing a **role-based Application Tracki
 
 ### 2️⃣ Candidate Module
 
-#### Job Application Management
-#### Application Status Tracking
-#### Candidate Dashboard
+ Job Application Management
+ Application Status Tracking
+ Candidate Dashboard
 
 ---
 
 ### 3️⃣ Recruiter Module
 
-#### Job Opening Management
-#### Candidate Management
-#### Hiring Pipeline & Status Management
-#### Recruiter Dashboard & Reports
+ Job Opening Management
+ Candidate Management
+ Hiring Pipeline & Status Management
+ Recruiter Dashboard & Reports
 ---
 
 ## 🛠 Tech Stack
@@ -75,13 +75,20 @@ This project solves both problems by providing a **role-based Application Tracki
 
 ---
 
-## 🧪 API Testing
+API Endpoints
+##Authentication
+POST /api/auth/register – Register as Candidate or Recruiter
+POST /api/auth/login – Login and receive JWT token
 
-All APIs were tested using **Postman** with JWT authorization.
+##Candidate APIs
+POST /api/candidate/applications – Add a new job application
+GET /api/candidate/applications – View applications 
+PATCH /api/candidate/applications/{id}/status – Update application status
 
-* Separate flows tested for Candidate and Recruiter
-* Pagination and filtering verified
-* Role-based access validated
+##Recruiter APIs
+POST /api/recruiter/jobs – Create a job opening
+PATCH /api/recruiter/candidates/{id}/stage – Move candidate through hiring stages
+GET /api/recruiter/dashboard – View open positions, candidates per job
 
 ---
 
