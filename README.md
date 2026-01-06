@@ -84,37 +84,8 @@ The system provides **role-based APIs** secured using JWT tokens:
 
 ---
 
-## How to Run the Project
-
-### Prerequisites
-- Java 17  
-- Maven  
-- MySQL  
-- Postman
-
-### Steps to Run
-1. **Clone the repository**  
-git clone https://github.com/your-username/your-repo-name.git
-
-Configure the database
-Update MySQL credentials in src/main/resources/application.properties:
-
-properties
-spring.datasource.url=jdbc:mysql://localhost:3306/job_tracker
-spring.datasource.username=root
-spring.datasource.password=your_password
-
-Run the application
-mvn spring-boot:run
-
-Access the application
-Server runs on: http://localhost:8080
-
-Test APIs using Postman with JWT token in Authorization header
-
 🚀 Future Enhancements
 Email notifications for status changes
-
 Deployment on AWS
 
 👩‍💻 Author
